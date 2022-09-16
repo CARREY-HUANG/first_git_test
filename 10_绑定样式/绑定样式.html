@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="text/javascript" src="../vue2/vue.js"></script>
+  <title>Document</title>
+  <style>
+    .basic{
+      color:black;
+      height: 50px;
+      width: 50px;
+    }
+    .normal{
+      color: aqua;
+      font-size: 1rem;
+      border:4px solid gray;
+    }
+
+    .happy{
+      color: blue;
+      font-size: 2rem;
+      border:4px solid gray;
+    }
+
+    .sad{
+      color: green;
+      font-size: 3rem;
+      border:4px solid gray;
+    }
+
+    .at1{
+      background-color: blueviolet;
+    }
+
+    .at2{
+      border:5px solid lightpink;
+    }
+
+    .at3{
+      font-size: 3rem;
+    }
+  </style>
+</head>
+<body>
+  <div id='root'>
+    <!-- 绑定class样式--字符串写法，适用于样式的类名不确定，需要动态指定 -->
+    <div class="basic" :class="mood" id="demo" @click="changeMood">{{name}}</div> <br/><br/>
+
+    <!--绑定class样式--数组号法，适用于：要绑定的样式个数不确定, 名字也不确定-->
+    <div class="basic" :class="classArr">{{name}}</div> <br/><br/>
+
+    <!--绑定class样式--对象写法, 适用于：要绑定的样式个数确定, 名字也确定, 但要动态决定用不用-->
+    <div class="basic" :class="classObj" >{{name}}</div> 
+
+    <div class="basic" :style="styleObj" >{{name}}</div>
+  
+  </div>
+</body>
+
+<script type="text/javascript">
+  Vue.config.productionTip = false; //阻止vue在启动时生成生产提示
+  new Vue({
+    el: '#root',
+    data:{
+      name:'hzz',
+      mood:'basic',
+      classArr:['at1','at2','at3'],
+      classObj:{
+        at1:true,
+        at2:false
+      },
+      styleObj:{
+        fontSize:'40px',
+        color:'lightblue'
+      }
+    },
+    methods:{
+      changeMood(){
+        const arr = ['normal','happy','sad']
+        const num = Math.floor(Math.random() * 3)
+        console.log(num)
+        this.mood = arr[num]
+      }
+    }
+  })
+
+  
+</script>
+
+</html>
